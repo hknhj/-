@@ -1,4 +1,6 @@
 #include <Bangtal.h>
+#include<time.h>
+#include<stdio.h>
 #pragma comment(lib, "Bangtal.lib")
 
 ObjectID picturerow[3];
@@ -7,7 +9,7 @@ ObjectID picturecol[3];
 
 int picture1X = 252, picture1Y = 451, picture2X = 510, picture2Y = 451, picture3X = 768, picture3Y = 451,
 picture4X = 252, picture4Y = 268, picture5X = 510, picture5Y = 268, picture6X = 768, picture6Y = 268,
-blackX = 252, blackY = 85, picture8X = 510, picture8Y = 85, picture9X = 768, picture9Y = 85;
+blackX = 252, blackY = 85, picture8X = 510, picture8Y = 85, picture9X = 768, picture9Y = 85, end, start;
 
 SceneID scene1;
 
@@ -23,6 +25,9 @@ ObjectID createObject(const char* name, const char* image, SceneID scene, int x,
 	return object;
 }
 
+
+
+
 void swap(int& a, int& b) {
 	int t = a;
 	a = b;
@@ -32,6 +37,11 @@ void swap(int& a, int& b) {
 
 
 void mouseCallback(ObjectID object, int x, int y, MouseAction action) {
+	if (object == naruto1 || naruto2 || naruto3 || naruto4 || naruto5 || naruto6 || naruto6 || naruto8 || naruto9) {
+		clock_t start = clock();
+	}
+
+
 	if (object == naruto1) {
 		swap(picture1X, blackX);
 		swap(picture1Y, blackY);
@@ -93,6 +103,9 @@ void mouseCallback(ObjectID object, int x, int y, MouseAction action) {
 		blackX == 768 && blackY == 85 && picture8X == 252 && picture8Y == 268 && picture9X == 768 && picture9Y == 268) {
 		setObjectImage(black, "나루토원본_009.jpeg");
 		showMessage("성공~~");
+		clock_t end = clock();
+
+		printf("걸린시간 : %If\n", (double)(end - start) / CLOCKS_PER_SEC);
 	}
 }
 
